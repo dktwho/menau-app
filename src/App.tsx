@@ -1,5 +1,5 @@
 import './App.css'
-import Button, {ButtonAlt} from "./components/Button/Button.tsx";
+import {Button, ButtonAlt} from "./components/Button/Button.tsx";
 
 function App() {
 

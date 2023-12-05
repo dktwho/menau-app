@@ -8,8 +8,6 @@ export const Button = ({children, className, ...props}: ButtonProps) => {
     );
 };
 
-export default Button;
-
 export const ButtonAlt: FC<ButtonProps> = ({children, className, ...props}) => {
     return (
         <button className={cn('button accent', className)} {...props}>{children}</button>
