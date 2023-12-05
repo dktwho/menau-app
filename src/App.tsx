@@ -1,11 +1,12 @@
 import './App.css'
-import Button from "./components/Button/Button.tsx";
+import Button, {ButtonAlt} from "./components/Button/Button.tsx";
 
 function App() {
 
   return (
     <>
-        <Button>Some button</Button>
+        <Button onClick={()=> console.log('btn')}>Some button</Button>
+        <ButtonAlt onClick={()=> console.log('btnalt')}>Some button Alt</ButtonAlt>
     </>
   )
 }
