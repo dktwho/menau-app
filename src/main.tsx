@@ -6,15 +6,22 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Menu} from "./pages/Menu/Menu.tsx";
 import {Card} from "./pages/Card/Card.tsx";
 import {Error} from "./pages/Error/Error.tsx";
+import {Layout} from "./layout/Menu/Menu.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Menu/>
-    },
-    {
-        path: '/card',
-        element: <Card/>
+        element: <Layout/>,
+        children: [
+            {
+                path: '/',
+                element: <Menu/>
+            },
+            {
+                path: '/card',
+                element: <Card/>
+            },
+        ]
     },
     {
         path: '*',
@@ -25,6 +32,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <RouterProvider router={router}/>
-            <App/>
+        <App/>
     </React.StrictMode>,
 )
