@@ -1,4 +1,3 @@
-import './App.css'
 import {Button, ButtonAlt} from "./components/Button/Button.tsx";
 import {useState} from "react";
 
