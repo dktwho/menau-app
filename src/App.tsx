@@ -8,6 +8,7 @@ function App() {
     <>
         <div>{counter}</div>
         <Button onClick={()=> setCounter(prev => prev + 1)}>Some button</Button>
+        <Button appearance={'big'}  onClick={()=> setCounter(prev => prev + 1)}>Some button</Button>
     </>
   )
 }
