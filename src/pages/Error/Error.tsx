@@ -1,8 +1,12 @@
+import {Link} from "react-router-dom";
 
 export const Error = () => {
     return (
-        <div>
-            Error
-        </div>
+        <>
+            <div>
+                <Link to="/">Menu</Link>
+                <Link to="/card">Card</Link>
+            </div>Error
+        </>
     );
 };
