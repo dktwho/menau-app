@@ -4,6 +4,7 @@ import {Input} from "./components/Input/Input.tsx";
 import {Route, Routes} from "react-router-dom";
 import {Card} from "./pages/Card/Card.tsx";
 import {Menu} from "./pages/Menu/Menu.tsx";
+import {Error} from "./pages/Error/Error.tsx";
 
 function App() {
     const [counter, setCounter] = useState<number>(0)
@@ -21,6 +22,7 @@ function App() {
         <Routes>
             <Route path={'/'} element={<Menu/>}/>
             <Route path={'/card'} element={<Card/>}/>
+            <Route path={'*'} element={<Error/>}/>
 
 
         </Routes>
