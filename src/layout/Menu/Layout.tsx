@@ -7,7 +7,7 @@ export const Layout = () => {
         <div className={styles['layout']}>
             <div className={styles['sidebar']}>
                 <div className={styles['user']}>
-                    <img src="/Intersect.png" alt="avatar user"/>
+                    <img className={styles['avatar']} src="/Intersect.png" alt="avatar user"/>
                     <div className={styles['name']}>User Name</div>
                     <div className={styles['email']}>user@mail.com</div>
                 </div>
@@ -17,7 +17,7 @@ export const Layout = () => {
                     <Link to="/card" className={styles['link']}>
                         <img src="/cart-icon.svg" alt="cart"/>Card</Link>
                 </div>
-                <Button>
+                <Button className={styles['exit']}>
                     <img src="/exit-icon.svg" alt="exit-menu"/>Exit
                 </Button>
             </div>
