@@ -26,8 +26,7 @@ export const Layout = () => {
                     <img src="/exit-icon.svg" alt="exit-menu"/>Exit
                 </Button>
             </div>
-            Menu
-            <div>
+            <div className={styles['content']}>
                 <Outlet/>
             </div>
         </div>

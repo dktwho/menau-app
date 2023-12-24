@@ -3,5 +3,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
-    color: var(--text-color)
+    color: var(--text-color);
+    margin: 0;
 }
