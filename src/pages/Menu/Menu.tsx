@@ -1,8 +1,9 @@
+import {Headling} from "../../components/Headling/Headling.tsx";
 
 export const Menu = () => {
     return (
         <>
-            Menu
+            <Headling>Menu</Headling>
         </>
     );
 };
