@@ -21,6 +21,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    text-decoration: none;
 }
 
 .description {
@@ -29,6 +30,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-decoration: none;
 }
 
 .price {
@@ -81,4 +83,8 @@
 
 .add-to-cart:hover {
     background: var(--primary-hover-color);
+}
+
+.link {
+    text-decoration: none;
 }
