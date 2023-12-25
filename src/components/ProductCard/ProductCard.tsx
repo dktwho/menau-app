@@ -2,7 +2,7 @@ import styles from './ProductCard.module.css'
 import {ProductCardProps} from "./ProductCard.props.ts";
 import {Link} from "react-router-dom";
 
-export const ProductCard = ({id, title, price, rating, image, description}: ProductCardProps) => {
+export const ProductCard = ({id, name, price, rating, image, description}: ProductCardProps) => {
     return (
         <Link to={`/product/${id}`} className={styles['link']} >
             <div className={styles['card']}>
@@ -20,7 +20,7 @@ export const ProductCard = ({id, title, price, rating, image, description}: Prod
                     </div>
                 </div>
                 <div className={styles['footer']}>
-                    <div className={styles['title']}>{title}</div>
+                    <div className={styles['title']}>{name}</div>
                     <div className={styles['description']}>{description}</div>
                 </div>
             </div>
