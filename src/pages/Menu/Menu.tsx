@@ -5,17 +5,14 @@ import {ProductCard} from "../../components/ProductCard/ProductCard.tsx";
 import {PREFIX} from "../../helpers/api.ts";
 import {Product} from "../../interfaces/product.interface.ts";
 import {useEffect, useState} from "react";
+import axios from "axios";
 
 export const Menu = () => {
     const [products, setProducts] = useState<Product[]>([])
 
     const getMenu = async () => {
         try {
-            const res = await fetch(`${PREFIX}/products`)
-            if (!res.ok) {
-                return;
-            }
-            const data = await res.json() as Product[]
+            const {data} = await axios.get<Product[]>(`${PREFIX}/products`)
             setProducts(data)
         } catch (e) {
             console.error(e)
@@ -45,10 +42,7 @@ export const Menu = () => {
                             rating={product.rating}/>
                     )
                 })}
-                <ProductCard id={1} name={'Наслаждение'} description={'Салями, руккола, помидоры, оливки'}
-                             image='/product-demo.png' price={300} rating={4.5}/>
             </div>
-
         </>
     );
 };
