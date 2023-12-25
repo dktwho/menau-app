@@ -4,7 +4,7 @@ import styles from './Menu.module.css'
 import {ProductCard} from "../../components/ProductCard/ProductCard.tsx";
 import {PREFIX} from "../../helpers/api.ts";
 import {Product} from "../../interfaces/product.interface.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export const Menu = () => {
     const [products, setProducts] = useState<Product[]>([])
@@ -19,10 +19,13 @@ export const Menu = () => {
             setProducts(data)
         } catch (e) {
             console.error(e)
+            return;
         }
-
-
     }
+
+    useEffect(() => {
+        getMenu()
+    }, [])
     return (
         <>
             <div className={styles['head']}>
