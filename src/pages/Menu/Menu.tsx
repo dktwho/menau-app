@@ -4,6 +4,11 @@ import styles from './Menu.module.css'
 import {ProductCard} from "../../components/ProductCard/ProductCard.tsx";
 
 export const Menu = () => {
+
+    const getMenu = async () => {
+        const res = await fetch('https://purpleschool.ru/pizza-api-demo/products')
+
+    }
     return (
         <>
             <div className={styles['head']}>
