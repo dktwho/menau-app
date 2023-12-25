@@ -1,15 +1,16 @@
 import {Headling} from "../../components/Headling/Headling.tsx";
 import {Search} from "../../components/Search/Search.tsx";
 import styles from './Menu.module.css'
-import {ProductCard} from "../../components/ProductCard/ProductCard.tsx";
 import {PREFIX} from "../../helpers/api.ts";
 import {Product} from "../../interfaces/product.interface.ts";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
+import {MenuList} from "./MenuList/MenuList.tsx";
 
 export const Menu = () => {
     const [products, setProducts] = useState<Product[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string | undefined>()
 
     const getMenu = async () => {
         try {
@@ -17,13 +18,16 @@ export const Menu = () => {
             await new Promise<void>((resolve) => {
                 setTimeout(() => {
                     resolve()
-                }, 2000)
+                }, 1000)
             })
             const {data} = await axios.get<Product[]>(`${PREFIX}/products`)
             setProducts(data)
             setIsLoading(false)
         } catch (e) {
             console.error(e)
+            if (e instanceof AxiosError) {
+                setError(e.message)
+            }
             setIsLoading(false)
             return;
         }
@@ -39,20 +43,10 @@ export const Menu = () => {
                 <Search placeholder={'Введите блюдо или состав'}></Search>
             </div>
             <div>
-                {!isLoading && products.map(product => {
-                    return (
-                        <ProductCard
-                            key={product.id}
-                            id={product.id}
-                            name={product.name}
-                            description={product.ingredients.join(', ')}
-                            image={product.image}
-                            price={product.price}
-                            rating={product.rating}/>
-                    )
-                })}
+                {error && <>{error}</>}
+                {!isLoading && <MenuList products={products}/>}
                 {isLoading && <>loading...</>}
             </div>
         </>
     );
-};
+}
