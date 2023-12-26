@@ -1,10 +1,11 @@
-import {useParams} from "react-router-dom";
+import {useLoaderData} from "react-router-dom";
+import {ProductInterface} from "../../interfaces/product.interface.ts";
 
 export const Product = () => {
-    const {id} = useParams()
+    const data = useLoaderData() as ProductInterface;
     return (
         <div>
-            Product - {id}
+            Product - {data.name}
         </div>
     );
 };

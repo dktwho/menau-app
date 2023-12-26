@@ -2,13 +2,13 @@ import {Headling} from "../../components/Headling/Headling.tsx";
 import {Search} from "../../components/Search/Search.tsx";
 import styles from './Menu.module.css'
 import {PREFIX} from "../../helpers/api.ts";
-import {Product} from "../../interfaces/product.interface.ts";
+import { ProductInterface} from "../../interfaces/product.interface.ts";
 import {useEffect, useState} from "react";
 import axios, {AxiosError} from "axios";
 import {MenuList} from "./MenuList/MenuList.tsx";
 
 export const Menu = () => {
-    const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<ProductInterface[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | undefined>()
 
@@ -20,7 +20,7 @@ export const Menu = () => {
                     resolve()
                 }, 1000)
             })
-            const {data} = await axios.get<Product[]>(`${PREFIX}/products`)
+            const {data} = await axios.get<ProductInterface[]>(`${PREFIX}/products`)
             setProducts(data)
             setIsLoading(false)
         } catch (e) {
