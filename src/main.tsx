@@ -4,7 +4,7 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Menu} from "./pages/Menu/Menu.tsx";
 import {Card} from "./pages/Card/Card.tsx";
-import {Error} from "./pages/Error/Error.tsx";
+import {Error as ErrorPage} from "./pages/Error/Error.tsx";
 import {Layout} from "./layout/Menu/Layout.tsx";
 import {Product} from "./pages/Product/Product.tsx";
 import {PREFIX} from "./helpers/api.ts";
@@ -26,6 +26,7 @@ const router = createBrowserRouter([
             {
                 path: `/product/:id`,
                 element: <Product/>,
+                errorElement: <>Error Element</>,
                 loader: async ({params}) => {
                     await new Promise<void>((resolve) => {
                         setTimeout(() => {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <Error/>
+        element: <ErrorPage/>
     },
 ])
 
