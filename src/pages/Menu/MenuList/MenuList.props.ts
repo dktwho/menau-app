@@ -1,5 +1,5 @@
-import {Product} from "../../../interfaces/product.interface.ts";
+import {ProductInterface} from "../../../interfaces/product.interface.ts";
 
 export interface MenuListProps  {
-    products: Product[]
+    products: ProductInterface[]
 }
