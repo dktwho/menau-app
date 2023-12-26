@@ -2,12 +2,12 @@ import {Headling} from "../../components/Headling/Headling.tsx";
 import {Search} from "../../components/Search/Search.tsx";
 import styles from './Menu.module.css'
 import {PREFIX} from "../../helpers/api.ts";
-import { ProductInterface} from "../../interfaces/product.interface.ts";
+import {ProductInterface} from "../../interfaces/product.interface.ts";
 import {useEffect, useState} from "react";
 import axios, {AxiosError} from "axios";
 import {MenuList} from "./MenuList/MenuList.tsx";
 
-export const Menu = () => {
+const Menu = () => {
     const [products, setProducts] = useState<ProductInterface[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | undefined>()
@@ -50,3 +50,5 @@ export const Menu = () => {
         </>
     );
 }
+
+export default Menu
