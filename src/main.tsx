@@ -1,8 +1,7 @@
-import React, {lazy} from 'react'
+import React, {lazy, Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-// import {Menu} from "./pages/Menu/Menu.tsx";
 import {Card} from "./pages/Card/Card.tsx";
 import {Error as ErrorPage} from "./pages/Error/Error.tsx";
 import {Layout} from "./layout/Menu/Layout.tsx";
@@ -19,8 +18,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Menu/>
-
+                element: <Suspense fallback={'loading menu...'}><Menu/></Suspense>
             },
             {
                 path: '/card',
