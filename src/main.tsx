@@ -29,8 +29,16 @@ const router = createBrowserRouter([
                 element: <Product/>,
                 errorElement: <>Error Element</>,
                 loader: async ({params}) => {
+                    // return defer({
+                    //     data: axios.get(`${PREFIX}/products/${params.id}`).then(data => data)
+                    // })
+
                     return defer({
-                        data: axios.get(`${PREFIX}/products/${params.id}`).then(data => data)
+                        data: new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                axios.get(`${PREFIX}/products/${params.id}`).then(data => resolve(data)).catch(e => reject(e))
+                            }, 1000)
+                        })
                     })
 
                     // await new Promise<void>((resolve) => {
