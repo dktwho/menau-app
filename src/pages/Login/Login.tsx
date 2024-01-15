@@ -3,10 +3,16 @@ import {Input} from "../../components/Input/Input.tsx";
 import {Button} from "../../components/Button/Button.tsx";
 import {Link} from "react-router-dom";
 import styles from './Login.module.css'
+import {FormEvent} from "react";
 
 export const Login = () => {
+    const onSubmitHandler = (e: FormEvent) => {
+        e.preventDefault()
+        console.log(e)
+    }
+
     return (
-        <div className={styles['login']}>
+        <div className={styles['login']} onSubmit={onSubmitHandler}>
             <Headling>Enter</Headling>
             <form className={styles['form']}>
                 <div className={styles['field']}>
