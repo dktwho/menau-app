@@ -23,7 +23,7 @@ export const Login = () => {
                 </div>
                 <Button appearance={'big'}>Enter</Button>
             </form>
-            <div>
+            <div className={styles['links']}>
                 <div>Do you have account ?</div>
                 <Link to={'/auth/register'}>Register now</Link>
             </div>
