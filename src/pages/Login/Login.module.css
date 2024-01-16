@@ -41,3 +41,10 @@
     text-decoration: none;
     color: var(--primary-color)
 }
+
+.error {
+    background: #FFC529;
+    color: red;
+    padding: 20px;
+    border-radius: 30px;
+}

@@ -3,7 +3,7 @@ import {Input} from "../../components/Input/Input.tsx";
 import {Button} from "../../components/Button/Button.tsx";
 import {Link} from "react-router-dom";
 import styles from './Login.module.css'
-import {FormEvent} from "react";
+import {FormEvent, useState} from "react";
 import axios, {AxiosError} from "axios";
 import {PREFIX} from "../../helpers/api.ts";
 
@@ -17,33 +17,33 @@ export type LoginFormType = {
 }
 
 export const Login = () => {
-
-
+    const [error, setError] = useState<string | null>()
     const onSubmitHandler = async (e: FormEvent) => {
         e.preventDefault()
+        setError(null)
         const target = e.target as typeof e.target & LoginFormType;
         const {email, password} = target;
         await sendLogin(email.value, password.value)
     }
 
-    const sendLogin = async(email: string, password: string) => {
+    const sendLogin = async (email: string, password: string) => {
         try {
-            const { data } = await axios.post(`${PREFIX}/auth/login`, {
+            const {data} = await axios.post(`${PREFIX}/auth/login`, {
                 email,
                 password
             })
             console.log(data)
         } catch (e) {
-            if(e instanceof AxiosError) {
-                console.log(e.message)
+            if (e instanceof AxiosError) {
+                setError(e.response?.data.message)
             }
         }
-
     }
 
     return (
         <div className={styles['login']}>
-            <Headling>Enter</Headling>
+            <Headling>Вход</Headling>
+            {error && <div className={styles['error']}>{error}</div>}
             <form className={styles['form']} onSubmit={onSubmitHandler}>
                 <div className={styles['field']}>
                     <label htmlFor="">
