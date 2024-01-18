@@ -38,7 +38,6 @@ export const Login = () => {
                 email,
                 password
             });
-            localStorage.setItem('jwt', data.access_token)
             dispatch(userActions.addJwt(data.access_token))
             navigate('/')
         } catch (e) {
