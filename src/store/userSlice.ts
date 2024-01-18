@@ -33,12 +33,14 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        addJwt: (state, action: PayloadAction<string>) => {
-            state.jwt = action.payload
-        },
         logout: (state) => {
             state.jwt = null
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(login.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
+            state.jwt = action.payload.access_token
+        })
     }
 })
 
