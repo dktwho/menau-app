@@ -8,6 +8,7 @@ export const JWT_PERSISTENT_STATE = 'userData'
 
 export interface UserState {
     jwt: string | null
+    loginErrorMessage?: string
 }
 
 export interface UserPersistantState {
@@ -15,7 +16,7 @@ export interface UserPersistantState {
 }
 
 const initialState: UserState = {
-    jwt: loadState<UserPersistantState>(JWT_PERSISTENT_STATE)?.jwt ?? null
+    jwt: loadState<UserPersistantState>(JWT_PERSISTENT_STATE)?.jwt ?? null,
 }
 
 export const login = createAsyncThunk('user/login',
@@ -40,6 +41,9 @@ const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
             state.jwt = action.payload.access_token
+        })
+        builder.addCase(login.rejected, (state, action) => {
+            state.loginErrorMessage = action.error.message
         })
     }
 })
