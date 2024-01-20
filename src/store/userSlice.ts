@@ -11,6 +11,7 @@ export const JWT_PERSISTENT_STATE = 'userData'
 export interface UserState {
     jwt: string | null
     loginErrorMessage?: string
+    registerErrorMessage?: string
     profile?: Profile
 }
 
@@ -37,7 +38,6 @@ export const login = createAsyncThunk('user/login',
                 throw  new Error(e.response?.data.message)
             }
         }
-
     })
 
 export const getProfile = createAsyncThunk<Profile, void, { state: RootState }>('user/getProfile',
@@ -50,6 +50,23 @@ export const getProfile = createAsyncThunk<Profile, void, { state: RootState }>(
             }
         );
         return data;
+    })
+
+export const register = createAsyncThunk('user/register',
+    async (params: { email: string, password: string, name: string }) => {
+        try {
+            const {data} = await axios.post<LoginResponse>(`${PREFIX}/auth/register`, {
+                    email: params.email,
+                    password: params.password,
+                    name: params.name
+                }
+            );
+            return data;
+        } catch (e) {
+            if (e instanceof AxiosError) {
+                throw  new Error(e.response?.data.message)
+            }
+        }
     })
 
 
