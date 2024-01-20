@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../store/store.ts";
 import {cartActions} from "../../store/cartSlice.ts";
+import { MouseEvent} from "react";
 
 export const ProductCard = ({id, name, price, rating, image, description}: ProductCardProps) => {
     const dispatch = useDispatch<AppDispatch>()
