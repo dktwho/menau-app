@@ -15,7 +15,6 @@ export interface UserState {
     profile?: Profile
 }
 
-
 export interface UserPersistantState {
     jwt: string | null
 }
