@@ -1,4 +1,3 @@
-
 import {Headling} from "../../components/Headling/Headling.tsx";
 import {Input} from "../../components/Input/Input.tsx";
 import {Button} from "../../components/Button/Button.tsx";
@@ -7,7 +6,7 @@ import styles from './Register.module.css'
 import {FormEvent, useEffect} from "react";
 import {AppDispatch, RootState} from "../../store/store.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {login, userActions} from "../../store/userSlice.ts";
+import { register, userActions} from "../../store/userSlice.ts";
 
 export type RegisterFormType = {
     email: {
@@ -25,7 +24,7 @@ export const Register = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
 
-    const {jwt, loginErrorMessage} = useSelector((state: RootState) => state.user)
+    const {jwt, registerErrorMessage} = useSelector((state: RootState) => state.user)
 
     useEffect(() => {
         if (jwt) {
@@ -34,20 +33,16 @@ export const Register = () => {
     }, [jwt, navigate])
     const onSubmitHandler = async (e: FormEvent) => {
         e.preventDefault()
-        dispatch(userActions.clearLoginError())
+        dispatch(userActions.clearRegisterError())
         const target = e.target as typeof e.target & RegisterFormType;
-        const {email, password} = target;
-        await sendLogin(email.value, password.value)
-    }
-
-    const sendLogin = async (email: string, password: string) => {
-        dispatch(login({email, password}))
+        const {email, password, name} = target;
+        dispatch(register({email: email.value, password: password.value, name: name.value}))
     }
 
     return (
         <div className={styles['login']}>
-            <Headling>Вход</Headling>
-            {loginErrorMessage && <div className={styles['error']}>{loginErrorMessage}</div>}
+            <Headling>Регистрация</Headling>
+            {registerErrorMessage && <div className={styles['error']}>{registerErrorMessage}</div>}
             <form className={styles['form']} onSubmit={onSubmitHandler}>
                 <div className={styles['field']}>
                     <label htmlFor="">
@@ -66,7 +61,7 @@ export const Register = () => {
                     <label htmlFor="">
                         Your name
                         <Input id={'name'} name={'name'} placeholder={'type here your name'}
-                               />
+                        />
                     </label>
                 </div>
                 <Button appearance={'big'}>Register</Button>
