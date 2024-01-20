@@ -13,10 +13,18 @@ const Menu = () => {
     const [error, setError] = useState<string | undefined>()
     const [filter, setFilter] = useState<string>()
 
-    const getMenu = async () => {
+    useEffect(() => {
+        getMenu(filter)
+    }, [filter])
+
+    const getMenu = async (name?: string) => {
         try {
             setIsLoading(true)
-            const {data} = await axios.get<ProductInterface[]>(`${PREFIX}/products`)
+            const {data} = await axios.get<ProductInterface[]>(`${PREFIX}/products`, {
+                params: {
+                    name
+                }
+            })
             setProducts(data)
             setIsLoading(false)
         } catch (e) {
@@ -32,9 +40,7 @@ const Menu = () => {
         setFilter(e.currentTarget.value)
     }
 
-    useEffect(() => {
-        getMenu()
-    }, [])
+
     return (
         <>
             <div className={styles['head']}>
