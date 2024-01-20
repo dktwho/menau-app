@@ -49,8 +49,10 @@ const Menu = () => {
             </div>
             <div>
                 {error && <>{error}</>}
-                {!isLoading && <MenuList products={products}/>}
+                {!isLoading && products.length > 0 &&  <MenuList products={products}/>}
                 {isLoading && <>loading...</>}
+                {!isLoading && products.length === 0 &&  <>Блюдо по запросу не найдено</>}
+
             </div>
         </>
     );
