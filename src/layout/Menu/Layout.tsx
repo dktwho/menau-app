@@ -36,8 +36,7 @@ export const Layout = () => {
                     <NavLink to="/card" className={({isActive}) => cn(styles['link'], {
                         [styles.active]: isActive
                     })}>
-                        <img src="/cart-icon.svg" alt="cart"/>Cart</NavLink>
-                    {items.reduce((acc, item) => acc += item.count, 0)}
+                        <img src="/cart-icon.svg" alt="cart"/>Cart <span className={styles['cartCount']}>{items.reduce((acc, item) => acc += item.count, 0)}</span></NavLink>
                 </div>
                 <Button className={styles['exit']} onClick={logout}>
                     <img src="/exit-icon.svg" alt="exit-menu"/>Exit
