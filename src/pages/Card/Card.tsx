@@ -45,19 +45,19 @@ export const Card = () => {
                 }
                 return <CartItem key={product.id} count={i.count}  {...product}/>
             })}
-            <div>
-                <div>Итог</div>
-                <div>{total}</div>
+            <div className={styles['line']}>
+                <div className={styles['text']}>Итог</div>
+                <div className={styles['price']}>{total}&nbsp;<span>₽</span></div>
             </div>
-            <hr/>
-            <div>
-                <div>Доставка</div>
-                <div>{DELIVERY_FEE}</div>
+            <hr className={styles['hr']}/>
+            <div className={styles['line']}>
+                <div className={styles['text']}>Доставка</div>
+                <div className={styles['price']}>{DELIVERY_FEE}&nbsp;<span>₽</span></div>
             </div>
-            <hr/>
-            <div>
-                <div>Итог {items.length}</div>
-                <div>{total + DELIVERY_FEE}</div>
+            <hr className={styles['hr']}/>
+            <div className={styles['line']}>
+                <div className={styles['text']}>Итог {items.length}</div>
+                <div className={styles['price']}>{total + DELIVERY_FEE}&nbsp;<span>₽</span></div>
             </div>
         </>
 
