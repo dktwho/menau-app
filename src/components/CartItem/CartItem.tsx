@@ -13,7 +13,6 @@ export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
     }
 
     const removeItem = () => {
-        dispatch(cartActions.add(id))
     }
     const decrease = () => {
     }
@@ -24,7 +23,7 @@ export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
             <div className={styles['image']} style={{backgroundImage: `url('${image}')`}}></div>
             <div className={styles['description']}>
                 <div className={styles['name']}>{name}</div>
-                <div className={styles['currency']}>{price}&nbsp; ₽</div>
+                <div className={styles['price']}>{price}&nbsp; ₽</div>
             </div>
 
             <div className={styles['actions']}>

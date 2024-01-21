@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {ProductInterface} from "../../interfaces/product.interface.ts";
 import {PREFIX} from "../../helpers/api.ts";
 import axios from "axios";
+import styles from './Card.module.css';
 
 export const Card = () => {
     const [cartProducts, setCartproducts] = useState<ProductInterface[]>([])
@@ -26,7 +27,7 @@ export const Card = () => {
     }, [items])
     return (
         <>
-            <Headling>Cart</Headling>
+            <Headling className={styles['headling']}>Cart</Headling>
             {items.map(i => {
                 const product = cartProducts.find(product => product.id === i.id)
                 if (!product) {
