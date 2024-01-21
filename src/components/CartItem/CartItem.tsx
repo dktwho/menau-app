@@ -7,14 +7,16 @@ import {CartItemProps} from "./CartItem.props.ts";
 
 export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
     const dispatch = useDispatch<AppDispatch>()
-    const increase = (e: MouseEvent) => {
+    const increaseItemCart = (e: MouseEvent) => {
         e.preventDefault()
         dispatch(cartActions.add(id))
     }
 
-    const removeItem = () => {
+    const removeAllItem = () => {
+        dispatch(cartActions.delete(id))
     }
-    const decrease = () => {
+    const decreaseItemCart = () => {
+        dispatch(cartActions.remove(id))
     }
 
     return (
@@ -27,7 +29,7 @@ export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
             </div>
 
             <div className={styles['actions']}>
-                <button className={styles['minus']} onClick={decrease}>
+                <button className={styles['minus']} onClick={decreaseItemCart}>
                     <img src="/minusIcons.svg" alt="decrease-from-cart"/>
                 </button>
 
@@ -35,11 +37,11 @@ export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
                     {count}
                 </div>
 
-                <button className={styles['plus']} onClick={increase}>
+                <button className={styles['plus']} onClick={increaseItemCart}>
                     <img src="/plusIcon.svg" alt="increase-to-cart"/>
                 </button>
 
-                <button className={styles['remove']} onClick={removeItem}>
+                <button className={styles['remove']} onClick={removeAllItem}>
                     <img src="/removeIcon.svg" alt="remove-all-cart"/>
                 </button>
             </div>
