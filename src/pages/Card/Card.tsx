@@ -8,9 +8,19 @@ import {PREFIX} from "../../helpers/api.ts";
 import axios from "axios";
 import styles from './Card.module.css';
 
+const DELIVERY_FEE = 169
+
 export const Card = () => {
     const [cartProducts, setCartproducts] = useState<ProductInterface[]>([])
     const items = useSelector((state: RootState) => state.cart.items)
+    const total = items.map(i => {
+            const product = cartProducts.find(product => product.id === i.id)
+            if (!product) {
+                return 0;
+            }
+            return i.count * product.price
+        }).reduce((acc, i) => acc += i, 0)
+
 
     const getItem = async (id: number) => {
         const {data} = await axios.get<ProductInterface>(`${PREFIX}/products/${id}`)
@@ -35,6 +45,20 @@ export const Card = () => {
                 }
                 return <CartItem key={product.id} count={i.count}  {...product}/>
             })}
+            <div>
+                <div>Итог</div>
+                <div>{total}</div>
+            </div>
+            <hr/>
+            <div>
+                <div>Доставка</div>
+                <div>{DELIVERY_FEE}</div>
+            </div>
+            <hr/>
+            <div>
+                <div>Итог {items.length}</div>
+                <div>{total + DELIVERY_FEE}</div>
+            </div>
         </>
 
     );
