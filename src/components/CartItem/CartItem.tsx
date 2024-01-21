@@ -27,15 +27,15 @@ export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
             </div>
 
             <div className={styles['actions']}>
-                <button className={styles['button']} onClick={decrease}>
+                <button className={styles['minus']} onClick={decrease}>
                     <img src="/minusIcons.svg" alt="decrease-from-cart"/>
                 </button>
 
-                <div>
+                <div className={styles['number']}>
                     {count}
                 </div>
 
-                <button className={styles['button']} onClick={increase}>
+                <button className={styles['plus']} onClick={increase}>
                     <img src="/plusIcon.svg" alt="increase-to-cart"/>
                 </button>
 
