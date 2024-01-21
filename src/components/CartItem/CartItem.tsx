@@ -27,18 +27,20 @@ export const CartItem = ({id, name, price, image, count}: CartItemProps) => {
             </div>
 
             <div className={styles['actions']}>
-                <button className={styles['button']} onClick={increase}>
-                    <img src="/add-to-cart-icon.svg" alt="increase-to-cart"/>+
+                <button className={styles['button']} onClick={decrease}>
+                    <img src="/minusIcons.svg" alt="decrease-from-cart"/>
                 </button>
+
                 <div>
                     {count}
                 </div>
-                <button className={styles['button']} onClick={decrease}>
-                    <img src="/add-to-cart-icon.svg" alt="decrease-from-cart"/>-
+
+                <button className={styles['button']} onClick={increase}>
+                    <img src="/plusIcon.svg" alt="increase-to-cart"/>
                 </button>
 
                 <button className={styles['remove']} onClick={removeItem}>
-                    <img src="/add-to-cart-icon.svg" alt="remove-all-cart"/>X
+                    <img src="/removeIcon.svg" alt="remove-all-cart"/>
                 </button>
             </div>
         </div>
