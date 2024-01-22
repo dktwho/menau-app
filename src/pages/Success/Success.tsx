@@ -7,8 +7,8 @@ export const Success = () => {
     return (
         <div className={styles['success']}>
             <img src="/success-order.png" alt="succes-order"/>
-            <div>Ваш заказ успешно оформлен</div>
-            <Button className={styles['text']} onClick={() => navigate('/')} appearance={'big'}>Сделать новый</Button>
+            <div className={styles['text']}>Ваш заказ успешно оформлен</div>
+            <Button onClick={() => navigate('/')} appearance={'big'}>Сделать новый</Button>
         </div>
     );
 };

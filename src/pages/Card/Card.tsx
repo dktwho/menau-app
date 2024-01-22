@@ -1,6 +1,6 @@
 import {Headling} from "../../components/Headling/Headling.tsx";
-import {useSelector} from "react-redux";
-import {RootState} from "../../store/store.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../store/store.ts";
 import {CartItem} from "../../components/CartItem/CartItem.tsx";
 import {useEffect, useState} from "react";
 import {ProductInterface} from "../../interfaces/product.interface.ts";
@@ -9,13 +9,15 @@ import axios from "axios";
 import styles from './Card.module.css';
 import {Button} from "../../components/Button/Button.tsx";
 import {useNavigate} from "react-router-dom";
+import {cartActions} from "../../store/cartSlice.ts";
 
 const DELIVERY_FEE = 169
 
 export const Card = () => {
-    const [cartProducts, setCartproducts] = useState<ProductInterface[]>([])
+    const [cartProducts, setCartProducts] = useState<ProductInterface[]>([])
     const items = useSelector((state: RootState) => state.cart.items)
     const jwt = useSelector((state: RootState) => state.user.jwt)
+    const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
     const total = items.map(i => {
         const product = cartProducts.find(product => product.id === i.id)
@@ -33,7 +35,7 @@ export const Card = () => {
 
     const loadAllItems = async () => {
         const res = await Promise.all(items.map(i => getItem(i.id)))
-        setCartproducts(res)
+        setCartProducts(res)
     }
 
     const checkout = async () => {
@@ -44,6 +46,7 @@ export const Card = () => {
                 Authorization: `Bearer ${jwt}`
             }
         })
+        dispatch(cartActions.clean())
         navigate('/success')
     }
 

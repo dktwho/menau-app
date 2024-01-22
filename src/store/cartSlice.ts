@@ -12,7 +12,7 @@ export interface CartState {
     items: CartItem[]
 }
 
-const initialState: CartState =  loadState<CartState>(CART_PERSISTENT_STATE) ??  {
+const initialState: CartState = loadState<CartState>(CART_PERSISTENT_STATE) ?? {
     items: []
 }
 
@@ -20,6 +20,10 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        clean: (state) => {
+            state.items = []
+        },
+
         delete: (state, action: PayloadAction<number>) => {
             state.items = state.items.filter(i => i.id !== action.payload);
         },
