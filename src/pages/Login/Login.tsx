@@ -55,7 +55,7 @@ export const Login = () => {
                     <label htmlFor="">
                         Your password
                         <Input id={'password'} type={'password'} name={'password'}
-                               placeholder={'type here your password'}/>
+                               placeholder={'type here your password'} autocomplete="on"/>
                     </label>
                 </div>
                 <Button appearance={'big'}>Enter</Button>
