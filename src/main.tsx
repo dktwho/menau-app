@@ -16,7 +16,7 @@ import {Provider} from "react-redux";
 import {store} from "./store/store.ts";
 import {Success} from "./pages/Success/Success.tsx";
 
-const Menu = lazy(() => import('./pages/Menu/Menu'))
+export const Menu = lazy(() => import('./pages/Menu/Menu'))
 
 const router = createBrowserRouter([
     {
