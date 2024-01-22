@@ -8,12 +8,15 @@ import {PREFIX} from "../../helpers/api.ts";
 import axios from "axios";
 import styles from './Card.module.css';
 import {Button} from "../../components/Button/Button.tsx";
+import {useNavigate} from "react-router-dom";
 
 const DELIVERY_FEE = 169
 
 export const Card = () => {
     const [cartProducts, setCartproducts] = useState<ProductInterface[]>([])
     const items = useSelector((state: RootState) => state.cart.items)
+    const jwt = useSelector((state: RootState) => state.user.jwt)
+    const navigate = useNavigate()
     const total = items.map(i => {
         const product = cartProducts.find(product => product.id === i.id)
         if (!product) {
@@ -31,6 +34,17 @@ export const Card = () => {
     const loadAllItems = async () => {
         const res = await Promise.all(items.map(i => getItem(i.id)))
         setCartproducts(res)
+    }
+
+    const checkout = async () => {
+        await axios.post(`${PREFIX}/order`, {
+            products: items
+        }, {
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            }
+        })
+        navigate('/success')
     }
 
     useEffect(() => {
@@ -57,11 +71,12 @@ export const Card = () => {
             </div>
             <hr className={styles['hr']}/>
             <div className={styles['line']}>
-                <div className={styles['text']}>Итог <span className={styles['totalCount']}>({items.length})</span></div>
+                <div className={styles['text']}>Итог <span className={styles['totalCount']}>({items.length})</span>
+                </div>
                 <div className={styles['price']}>{total + DELIVERY_FEE}&nbsp;<span>₽</span></div>
             </div>
             <div className={styles['checkout']}>
-                <Button appearance={'big'}>Оформить</Button>
+                <Button appearance={'big'} onClick={checkout}>Оформить</Button>
             </div>
         </>
 
