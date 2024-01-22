@@ -7,6 +7,7 @@ import {ProductInterface} from "../../interfaces/product.interface.ts";
 import {PREFIX} from "../../helpers/api.ts";
 import axios from "axios";
 import styles from './Card.module.css';
+import {Button} from "../../components/Button/Button.tsx";
 
 const DELIVERY_FEE = 169
 
@@ -58,6 +59,9 @@ export const Card = () => {
             <div className={styles['line']}>
                 <div className={styles['text']}>Итог <span className={styles['totalCount']}>({items.length})</span></div>
                 <div className={styles['price']}>{total + DELIVERY_FEE}&nbsp;<span>₽</span></div>
+            </div>
+            <div className={styles['checkout']}>
+                <Button appearance={'big'}>Оформить</Button>
             </div>
         </>
 
