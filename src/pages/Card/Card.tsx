@@ -14,12 +14,12 @@ export const Card = () => {
     const [cartProducts, setCartproducts] = useState<ProductInterface[]>([])
     const items = useSelector((state: RootState) => state.cart.items)
     const total = items.map(i => {
-            const product = cartProducts.find(product => product.id === i.id)
-            if (!product) {
-                return 0;
-            }
-            return i.count * product.price
-        }).reduce((acc, i) => acc += i, 0)
+        const product = cartProducts.find(product => product.id === i.id)
+        if (!product) {
+            return 0;
+        }
+        return i.count * product.price
+    }).reduce((acc, i) => acc += i, 0)
 
 
     const getItem = async (id: number) => {
@@ -56,7 +56,7 @@ export const Card = () => {
             </div>
             <hr className={styles['hr']}/>
             <div className={styles['line']}>
-                <div className={styles['text']}>Итог {items.length}</div>
+                <div className={styles['text']}>Итог <span className={styles['totalCount']}>({items.length})</span></div>
                 <div className={styles['price']}>{total + DELIVERY_FEE}&nbsp;<span>₽</span></div>
             </div>
         </>
