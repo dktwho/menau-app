@@ -1,0 +1,37 @@
+.productContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    max-width: 200px;
+}
+
+.productImage {
+    height: 180px;
+    width: 280px;
+}
+
+.productDescription {
+    display: flex;
+    gap: 20px;
+}
+
+
+.productItems {
+    color: var(--primary-color);
+}
+
+.productItem {
+    color: var(--text-secondary-color);
+}
+
+.productRating span {
+    font-weight: bold;
+}
+.productPrice span {
+    color: var(--primary-color);
+}
+
+
