@@ -41,6 +41,7 @@ export const Register = () => {
 
     return (
         <div className={styles['login']}>
+            <p>Для регистрации можно указать любую почту с валидацией, например <b>b@mail.com</b> и любой пароль</p>
             <Headling>Регистрация</Headling>
             {registerErrorMessage && <div className={styles['error']}>{registerErrorMessage}</div>}
             <form className={styles['form']} onSubmit={onSubmitHandler}>
