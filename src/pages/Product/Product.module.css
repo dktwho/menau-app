@@ -9,8 +9,9 @@
 }
 
 .productImage {
-    height: 180px;
-    width: 280px;
+    position: relative;
+    min-height: 165px;
+    border-radius: 19px;
 }
 
 .productDescription {
